@@ -1,0 +1,171 @@
+/* Modern Dark Theme with Proper Contrast */
+
+/* Root variables */
+:root {
+    --primary: #0077b6;
+    --secondary: #6610f2;
+    --bg-dark: #1a1a1a;
+    --surface: #2c2f33;
+    --surface-light: #383b3f;
+    --text: #ffffff;
+    --text-secondary: #e0e0e0;
+    --border: #4a4d51;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Base styling */
+.stApp {
+    background-color: var(--bg-dark) !important;
+}
+
+/* Target all text elements in Streamlit */
+[class*="st-"] {
+    color: var(--text) !important;
+}
+
+/* Headings with proper contrast */
+h1, h2, h3, h4, h5, h6,
+[data-testid="stHeader"],
+div[class*="st-emotion-cache-"] h1,
+div[class*="st-emotion-cache-"] h2,
+div[class*="st-emotion-cache-"] h3,
+div[class*="st-emotion-cache-"] h4,
+div[class*="st-emotion-cache-"] h5,
+div[class*="st-emotion-cache-"] h6,
+div[class*="css-"] h1,
+div[class*="css-"] h2,
+div[class*="css-"] h3,
+div[class*="css-"] h4,
+div[class*="css-"] h5,
+div[class*="css-"] h6 {
+    color: var(--text) !important;
+    font-weight: 600 !important;
+}
+
+/* Basic travel details section */
+div[data-testid="stMarkdown"] h2,
+div[class*="st-emotion-cache-"] h2 {
+    color: var(--text) !important;
+    font-weight: bold !important;
+    margin-bottom: 1rem !important;
+}
+
+/* About section and general text */
+div[data-testid="stMarkdown"] p,
+div[class*="st-emotion-cache-"] p,
+.stMarkdown,
+div[data-testid="stText"] p {
+    color: var(--text) !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Input fields with proper contrast */
+input,
+textarea,
+[data-testid="stTextInput"] input,
+[data-testid="stNumberInput"] input,
+[data-testid="stTextArea"] textarea,
+div[class*="st-emotion-cache-"] input,
+div[class*="st-emotion-cache-"] textarea {
+    background-color: var(--surface-light) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+}
+
+/* Input labels and placeholders */
+label,
+[data-testid="stTextInput"] label,
+[data-testid="stNumberInput"] label,
+div[class*="st-emotion-cache-"] label {
+    color: var(--text) !important;
+    font-weight: 500 !important;
+}
+
+/* Status messages and activity text */
+div[data-testid="stText"],
+div[class*="st-emotion-cache-"] div[role="alert"],
+div[class*="st-emotion-cache-"] {
+    color: var(--text) !important;
+}
+
+/* Timeline and date displays */
+div[data-testid="stMarkdown"] strong,
+div[class*="st-emotion-cache-"] strong {
+    color: var(--text) !important;
+    font-weight: 600 !important;
+}
+
+/* Activity suggestions */
+div[data-testid="stMarkdown"] ul,
+div[data-testid="stMarkdown"] li,
+div[class*="st-emotion-cache-"] ul,
+div[class*="st-emotion-cache-"] li {
+    color: var(--text) !important;
+}
+
+/* Button states */
+button,
+.stButton button {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    color: var(--text) !important;
+    border: none !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+button:hover,
+.stButton button:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Select boxes and dropdowns */
+select,
+div[data-baseweb="select"] *,
+div[class*="st-emotion-cache-"] select {
+    background-color: var(--surface-light) !important;
+    color: var(--text) !important;
+}
+
+/* Force text color on specific elements */
+[class*="st-emotion-cache-"] {
+    color: var(--text) !important;
+}
+
+/* Ensure proper contrast for links */
+a,
+[data-testid="stMarkdown"] a,
+div[class*="st-emotion-cache-"] a {
+    color: var(--primary) !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+/* Error states */
+.streamlit-expanderHeader:hover,
+[data-baseweb="notification"] {
+    color: var(--text) !important;
+    background-color: var(--surface) !important;
+}
+
+/* Ensure all text elements are visible */
+* {
+    color: var(--text) !important;
+}
+
+/* Fix specific issues */
+div[data-testid="stMarkdown"] div {
+    color: var(--text) !important;
+}
+
+.element-container {
+    color: var(--text) !important;
+}
