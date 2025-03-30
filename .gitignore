@@ -2,36 +2,37 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.Python
 venv/
-env/
 *.so
 
-# Environment variables
+# Environment and secrets
 .env
-
-# Streamlit secrets
 .streamlit/secrets.toml
 
 # IDE
 .idea/
 .vscode/
 *.swp
-*.swo
+
+# Project specific
+project_cleanup.md
+project_plan.md
+redesign_plan.md
+fix_*.md
+*.log
+
+# Temporary files
+*.bak
+*.tmp
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
+# Documentation drafts and temporary notes
+*_draft.md
+*_notes.md
 
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-
-# Testing
-.coverage
-.pytest_cache/
-htmlcov/
+# Test files
+test.py
+mock_*.py
