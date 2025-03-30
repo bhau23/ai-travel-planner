@@ -72,7 +72,8 @@ class ItineraryDisplay:
         # Convert activities to DataFrame for easier handling
         activities_df = pd.DataFrame(activities)
         activities_df['start_time'] = pd.to_datetime(activities_df['time'], format='%H:%M').dt.time
-        activities_df['duration_hours'] = activities_df['duration'].str.extract('(\d+)').astype(float)
+        # Use raw string for regex pattern
+        activities_df['duration_hours'] = activities_df['duration'].str.extract(r'(\d+)').astype(float)
 
         # Add activities to timeline
         for idx, activity in activities_df.iterrows():
@@ -145,7 +146,7 @@ class ItineraryDisplay:
             height=400
         )
 
-        st.plotly_chart(temp_fig, use_container_width=True)
+        st.plotly_chart(temp_fig, use_container_width=True, key="weather_temp_trend")
 
         # Display daily weather details
         for _, weather in weather_df.iterrows():
