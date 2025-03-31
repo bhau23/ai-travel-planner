@@ -155,21 +155,22 @@ gemini_api = None
 weather_api = None
 
 try:
-    gemini_api_key = os.getenv("GEMINI_API_KEY")
-    weather_api_key = os.getenv("OPENWEATHER_API_KEY")
+    # Try to get API keys from Streamlit secrets first, then environment variables
+    gemini_api_key = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY"))
+    weather_api_key = st.secrets.get("OPENWEATHER_API_KEY", os.getenv("OPENWEATHER_API_KEY"))
     
     if not gemini_api_key:
-        st.warning("Gemini API key not found. Using demo mode.")
+        st.warning("Gemini API key not found in secrets or environment. Using demo mode.")
         gemini_api = GeminiAPI(api_key="demo", use_mock=True)
     else:
         try:
             gemini_api = GeminiAPI(api_key=gemini_api_key)
         except Exception as e:
-            st.warning("Failed to initialize Gemini API. Using demo mode.")
+            st.warning(f"Failed to initialize Gemini API: {str(e)}. Using demo mode.")
             gemini_api = GeminiAPI(api_key="demo", use_mock=True)
     
     if not weather_api_key:
-        st.warning("OpenWeather API key not found. Weather data may be limited.")
+        st.info("OpenWeather API key not found in secrets or environment. Using sample weather data.")
         weather_api = WeatherAPI(api_key="demo")
     else:
         weather_api = WeatherAPI(api_key=weather_api_key)
