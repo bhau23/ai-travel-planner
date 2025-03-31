@@ -48,7 +48,7 @@ class ItineraryDisplay:
                         st.metric("Rain Chance", f"{weather['precipitation_prob']:.0f}%")
 
                 # Display activities timeline
-                ItineraryDisplay._show_activities_timeline(day_plan['activities'])
+                ItineraryDisplay._show_activities_timeline(day_plan['activities'], day_plan['day'])
                 
                 # Display daily budget and notes
                 st.info(f"Daily Budget: {day_plan['daily_budget']}")
@@ -57,7 +57,7 @@ class ItineraryDisplay:
                     st.markdown(day_plan['notes'])
 
     @staticmethod
-    def _show_activities_timeline(activities: List[Dict[str, Any]]):
+    def _show_activities_timeline(activities: List[Dict[str, Any]], day_number: int):
         """Display activities in a timeline format."""
         # Create a Gantt chart-like timeline
         fig = go.Figure()
@@ -72,7 +72,6 @@ class ItineraryDisplay:
         # Convert activities to DataFrame for easier handling
         activities_df = pd.DataFrame(activities)
         activities_df['start_time'] = pd.to_datetime(activities_df['time'], format='%H:%M').dt.time
-        # Use raw string for regex pattern
         activities_df['duration_hours'] = activities_df['duration'].str.extract(r'(\d+)').astype(float)
 
         # Add activities to timeline
@@ -99,7 +98,9 @@ class ItineraryDisplay:
             margin=dict(l=0, r=0, t=30, b=0)
         )
 
-        st.plotly_chart(fig, use_container_width=True, key=f"timeline_{activities[0]['time']}")
+        # Generate unique key using day number and first activity time
+        timeline_key = f"timeline_day{day_number}_{activities[0]['time']}"
+        st.plotly_chart(fig, use_container_width=True, key=timeline_key)
 
         # Display activities as cards
         for activity in activities:
@@ -149,7 +150,7 @@ class ItineraryDisplay:
         st.plotly_chart(temp_fig, use_container_width=True, key="weather_temp_trend")
 
         # Display daily weather details
-        for _, weather in weather_df.iterrows():
+        for idx, weather in weather_df.iterrows():
             with st.expander(f"Weather for {weather['date']}", expanded=False):
                 cols = st.columns(4)
                 with cols[0]:
